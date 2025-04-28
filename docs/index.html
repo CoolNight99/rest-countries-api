@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REST Countries API with color theme switcher</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="styles.css"/>
+    <link rel="stylesheet" href="themes.css"/>
+</head>
+<body>
+    <div id="countries">
+        <div class="py-4" :class="[darkMode ? 'dark-theme' : 'light-theme']">
+            <header class="d-flex justify-content-between align-items-center px-5">
+                <h3>Where in the world?</h3>
+                <div class="mode-switcher d-flex justify-content-between align-items-center" @click="changeMode">
+                    <i :class="[darkMode ? 'fa-solid fa-moon' : 'fa-regular fa-moon']"></i>
+                    <p class="my-auto">{{ darkMode ? 'Light Mode' : 'Dark Mode' }}</p>
+                </div>
+            </header>
+            <hr :style="{ backgroundColor: darkMode ? 'hsl(200, 15%, 8%)' : 'hsl(0, 0%, 52%)'}">
+            <main class="px-5">
+                <router-view :countries="countries" :regions="regions" :darkMode="darkMode" :searchForCountry="searchForCountry"></router-view>    
+            </main>
+        </div>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/vue-router@4"></script>
+    <script src="script.js"></script>
+</body>
+</html>

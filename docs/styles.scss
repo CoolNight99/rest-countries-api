@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+
+body {
+    font-family: "Nunito Sans";
+
+    header {
+        h3 {
+            font-weight: 800;
+        }
+
+        .mode-switcher {
+            width: 6.25rem;
+            cursor: pointer;
+
+            p {
+                font-weight: 600;
+            }
+        }
+    }
+
+    hr {
+        border: none;
+        height: 0.1875rem;
+        box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2); 
+    }
+
+    main {
+        p {
+            font-size: 0.875rem;
+        }
+
+        .search-and-filter-div {
+            border: none !important;
+            box-shadow: none !important;
+            div {
+                .input-group {
+
+                    .input-group-text {
+                        background-color: hsl(0, 0%, 100%);
+                        box-shadow: 0 0.0625rem 0.0625rem rgba(0, 0, 0, 0.2);
+                    }
+
+                    input {
+                        background-color: hsl(0, 0%, 100%);
+                        font-size: 0.875rem;
+                        font-weight: 600;
+                    }
+                }
+
+                select {
+                    box-shadow: 0 0.0625rem 0.0625rem rgba(0, 0, 0, 0.2);
+                    font-weight: 600;
+                    background-color: hsl(0, 0%, 100%);
+                    font-size: 0.875rem;
+
+                    option {
+                        font-weight: 600;
+                        font-size: 0.875rem;  
+                    }
+                }
+            }
+        }
+
+        .country-cards {
+            div {
+                .country-card {
+                    box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2); 
+                    
+                    .card-img-top {
+                        height: 50%;
+                        object-fit: contain;
+                        object-position: top;
+                    }
+
+                    .card-body {
+                        h5 {
+                            font-weight: 800;
+                        }
+
+                        .card-text {
+                            line-height: 0.625rem;
+
+                            span {
+                                font-weight: 800;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
