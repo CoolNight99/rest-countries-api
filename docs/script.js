@@ -2,7 +2,7 @@ const HomeView = {
   template: `
     <div>
       <div class="search-and-filter-div d-flex justify-content-between gx-5 my-5">
-        <div class="col-12 mb-3 mb-md-0">
+        <div class="col-12 col-md-6 mb-3 mb-md-0">
           <div class="input-group">
             <span class="input-group-text">
               <i class="fa-solid fa-magnifying-glass mx-2" :style="{ color: darkMode ? '#ffffff' : '#858585' }"></i>
@@ -10,7 +10,7 @@ const HomeView = {
             <input type="text" class="form-control p-3" :class="{'placeholder-dark': darkMode, 'placeholder-light': !darkMode}" v-model="searchInput" placeholder="Search for a country...">
           </div>
         </div>
-        <div class="col-12 col-md-3">
+        <div class="col-12 col-md-4 ms-md-auto">
           <select class="form-select p-3" v-model="filterInput">
             <option selected disabled value="">Filter by Region</option>
             <option v-for="region in regions" :key="region" :value="region">
