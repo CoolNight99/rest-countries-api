@@ -2,16 +2,16 @@ const HomeView = {
   template: `
     <div>
       <div class="search-and-filter-div d-flex justify-content-between gx-5 my-5">
-        <div class="col-12 col-md-5 mb-3 mb-md-0">
+        <div class="col-12 mb-3 mb-md-0">
           <div class="input-group">
-            <span class="input-group-text" :class="[darkMode ? 'input-dark' : 'input-light']">
+            <span class="input-group-text">
               <i class="fa-solid fa-magnifying-glass mx-2" :style="{ color: darkMode ? '#ffffff' : '#858585' }"></i>
             </span>
-            <input type="text" class="form-control p-3" :class="[darkMode ? 'placeholder-dark' : 'placeholder-light']" v-model="searchInput" placeholder="Search for a country...">
+            <input type="text" class="form-control p-3" :class="{'placeholder-dark': darkMode, 'placeholder-light': !darkMode}" v-model="searchInput" placeholder="Search for a country...">
           </div>
         </div>
         <div class="col-12 col-md-3">
-          <select class="form-select p-3" v-model="filterInput" :style="{ backgroundColor: darkMode ? 'hsl(209, 23%, 22%)' : 'hsl(0, 0%, 100%)', color: darkMode ? 'hsl(0, 0%, 100%)' : 'hsl(0, 0%, 52%)' }">
+          <select class="form-select p-3" v-model="filterInput">
             <option selected disabled value="">Filter by Region</option>
             <option v-for="region in regions" :key="region" :value="region">
               {{ region }}
@@ -24,7 +24,7 @@ const HomeView = {
           <div class="card country-card h-100">
             <img :src="country.flags.svg" class="card-img-top w-40" :alt="'Flag of ' + country.name.common">
             <div class="card-body p-4">
-              <h5 class="card-title mb-4">{{ country.name.common }}</h5>
+              <h5 class="card-title mb-4" @click="openDetailedView(country.name.common)">{{ country.name.common }}</h5>
               <p class="card-text"><span>Population:</span> {{ country.population.toLocaleString() }}</p>
               <p class="card-text"><span>Region:</span> {{ country.region }}</p>
               <p class="card-text"><span>Capital:</span> {{ country.capital ? country.capital[0] : "N/A" }}</p>
@@ -52,16 +52,78 @@ const HomeView = {
         return matchesSearch && matchesRegion;
       });
     }
-  }  
-};
+  },
 
+  methods: {
+    updateSearchInput() {
+      this.$emit('update:searchForCountry', this.searchInput);
+    },
+
+    openDetailedView(name) {
+      this.$router.push(`/country/${name}`);
+    }
+  }
+};
 
 const DetailedView = {
   template: `
-            <div>
-
+    <div class="detailed-view-div">
+      <button class="btn back-btn px-4 my-5 mx-4" @click="goBack()"><i class="fa-solid fa-arrow-left mx-2"></i> Back</button>
+      <div v-if="countryDetails.flags" class="container">
+        <div class="row">
+          <div class="col">
+            <img :src="countryDetails.flags.svg" class="card-img-top w-40" :alt="'Flag of ' + countryDetails.name.common">
+          </div>
+          <div class="col mx-5">
+            <h3 class="mb-4">{{ countryDetails.name.common }}</h3>
+            <div class="row">
+              <div class="col">
+                <p v-if="countryDetails.name?.nativeName"><span>Native Name:</span> {{ Object.values(countryDetails.name.nativeName)[0].official }}</p>
+                <p><span>Population:</span> {{ countryDetails.population.toLocaleString() }}</p>
+                <p><span>Region:</span> {{ countryDetails.region }}</p>
+                <p><span>Sub Region:</span> {{ countryDetails.subregion }}</p>
+                <p><span>Capital:</span> {{ countryDetails.capital ? countryDetails.capital[0] : "N/A" }}</p>
+              </div>
+              <div class="col">
+                <p><span>Top Level Domain:</span> .{{ countryDetails.cca2.toLowerCase() }}</p>
+                <p><span>Currencies:</span> {{ Object.values(countryDetails.currencies).map(c => c.name).join(", ") }}</p>
+                <p><span>Languages:</span> {{ Object.values(countryDetails.languages).join(", ") }}</p>
+              </div>
             </div>
-            `
+          </div>
+        </div>
+      </div>
+    </div>
+  `,
+
+  props: ['country'],
+
+  data() {
+    return {
+      countryDetails: {} 
+    };
+  },
+
+  mounted() {
+    this.fetchCountryDetails();
+  },
+
+  methods: {
+    async fetchCountryDetails() {
+      const name = this.$route.params.name;
+      try {
+        const res = await fetch(`https://restcountries.com/v3.1/name/${name}`);
+        const data = await res.json();
+        this.countryDetails = data[0];
+      } catch (err) {
+        console.error(err);
+      }
+    },
+
+    goBack() {
+      this.$router.push("/");
+    }
+  }
 };
 
 const routes = [
@@ -74,7 +136,6 @@ const routes = [
   {
     path: "/country/:name",
     component: DetailedView,
-    props: true
   }
 ];
 
@@ -109,8 +170,12 @@ const countriesApp = Vue.createApp({
 
     changeMode() {
       this.darkMode = !this.darkMode;
-      document.body.classList.toggle("dark-theme", this.darkMode);
-      document.body.classList.toggle("light-theme", !this.darkMode);
+      document.documentElement.classList.toggle("dark-theme", this.darkMode);
+      document.documentElement.classList.toggle("light-theme", !this.darkMode);    
+    },
+
+    openDetailedView(name) {
+      this.$router.push(`/country/${name}`);
     },
   },
 

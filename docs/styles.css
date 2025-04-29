@@ -15,7 +15,7 @@ body header .mode-switcher p {
 body hr {
   border: none;
   height: 0.1875rem;
-  box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0.0625rem 0.0625rem 0.125rem 0.0625rem rgba(0, 0, 0, 0.2);
 }
 body main p {
   font-size: 0.875rem;
@@ -26,7 +26,6 @@ body main .search-and-filter-div {
 }
 body main .search-and-filter-div div .input-group .input-group-text {
   background-color: hsl(0, 0%, 100%);
-  box-shadow: 0 0.0625rem 0.0625rem rgba(0, 0, 0, 0.2);
 }
 body main .search-and-filter-div div .input-group input {
   background-color: hsl(0, 0%, 100%);
@@ -34,17 +33,18 @@ body main .search-and-filter-div div .input-group input {
   font-weight: 600;
 }
 body main .search-and-filter-div div select {
-  box-shadow: 0 0.0625rem 0.0625rem rgba(0, 0, 0, 0.2);
+  box-shadow: 0.0625rem 0.0625rem 0.125rem 0.0625rem rgba(0, 0, 0, 0.2);
   font-weight: 600;
   background-color: hsl(0, 0%, 100%);
   font-size: 0.875rem;
+  cursor: pointer;
 }
 body main .search-and-filter-div div select option {
   font-weight: 600;
   font-size: 0.875rem;
 }
 body main .country-cards div .country-card {
-  box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0.0625rem 0.0625rem 0.125rem 0.0625rem rgba(0, 0, 0, 0.2);
 }
 body main .country-cards div .country-card .card-img-top {
   height: 50%;
@@ -53,12 +53,30 @@ body main .country-cards div .country-card .card-img-top {
 }
 body main .country-cards div .country-card .card-body h5 {
   font-weight: 800;
+  cursor: pointer;
 }
 body main .country-cards div .country-card .card-body .card-text {
   line-height: 0.625rem;
 }
 body main .country-cards div .country-card .card-body .card-text span {
   font-weight: 800;
+}
+body main .detailed-view-div .back-btn {
+  box-shadow: 0.0625rem 0.0625rem 0.125rem 0.0625rem rgba(0, 0, 0, 0.2);
+  border: none;
+  border-radius: 0.3125rem;
+}
+body main .detailed-view-div .container .row .col h3 {
+  font-weight: 800;
+}
+body main .detailed-view-div .container .row .col p span {
+  font-weight: 800;
+}
+
+@media (max-width: 768px) {
+  body {
+    width: 100vw;
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */

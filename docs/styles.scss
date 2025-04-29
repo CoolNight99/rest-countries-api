@@ -21,7 +21,7 @@ body {
     hr {
         border: none;
         height: 0.1875rem;
-        box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2); 
+        box-shadow: 0.0625rem 0.0625rem 0.125rem 0.0625rem rgba(0, 0, 0, 0.2); 
     }
 
     main {
@@ -32,12 +32,12 @@ body {
         .search-and-filter-div {
             border: none !important;
             box-shadow: none !important;
+
             div {
                 .input-group {
 
                     .input-group-text {
                         background-color: hsl(0, 0%, 100%);
-                        box-shadow: 0 0.0625rem 0.0625rem rgba(0, 0, 0, 0.2);
                     }
 
                     input {
@@ -48,10 +48,11 @@ body {
                 }
 
                 select {
-                    box-shadow: 0 0.0625rem 0.0625rem rgba(0, 0, 0, 0.2);
+                    box-shadow: 0.0625rem 0.0625rem 0.125rem 0.0625rem rgba(0, 0, 0, 0.2); 
                     font-weight: 600;
                     background-color: hsl(0, 0%, 100%);
                     font-size: 0.875rem;
+                    cursor: pointer;
 
                     option {
                         font-weight: 600;
@@ -64,7 +65,7 @@ body {
         .country-cards {
             div {
                 .country-card {
-                    box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2); 
+                    box-shadow: 0.0625rem 0.0625rem 0.125rem 0.0625rem rgba(0, 0, 0, 0.2); 
                     
                     .card-img-top {
                         height: 50%;
@@ -75,6 +76,7 @@ body {
                     .card-body {
                         h5 {
                             font-weight: 800;
+                            cursor: pointer;
                         }
 
                         .card-text {
@@ -88,5 +90,35 @@ body {
                 }
             }
         }
+
+        .detailed-view-div {
+            .back-btn {
+                box-shadow: 0.0625rem 0.0625rem 0.125rem 0.0625rem rgba(0, 0, 0, 0.2); 
+                border: none;
+                border-radius: 0.3125rem;
+            }
+
+            .container {
+                .row {
+                    .col {
+                        h3 {
+                            font-weight: 800;
+                        }
+
+                        p {
+                            span {
+                                font-weight: 800;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        width: 100vw;
     }
 }

@@ -1,27 +1,29 @@
-.dark-theme {
-    background-color: hsl(207, 26%, 17%);
-    color: hsl(0, 0%, 100%);
-}
+/* dark theme */
 
-.light-theme {
-    background-color: hsl(0, 0%, 98%);
-    color: hsl(200, 15%, 8%); 
-}
-
-.placeholder-dark::placeholder {
-    color: hsl(0, 0%, 80%) !important;
-}
-  
-.placeholder-light::placeholder {
-    color: hsl(0, 0%, 52%) !important;
-}
-
-.input-light {
-    color: hsl(0, 0%, 52%) !important;
-    background-color: hsl(0, 0%, 100%) !important;
-}
-
-.input-dark {
-    background-color: hsl(209, 23%, 22%) !important;
+.dark-theme, 
+.dark-theme .form-control, 
+.dark-theme .form-select, 
+.dark-theme .input-group .input-group-text,
+.dark-theme .input-group .input-group-text i,
+.dark-theme .country-cards .col-12 .country-card,
+.dark-theme .form-control::placeholder {
+    background-color: hsl(207, 26%, 17%) !important;
     color: hsl(0, 0%, 100%) !important;
+}
+
+.dark-theme .form-control, 
+.dark-theme .form-select,
+.dark-theme .input-group .input-group-text {
+    border-color: hsl(209, 23%, 22%);
+}
+
+/* light theme */
+.light-theme, 
+.light-theme .form-control, 
+.light-theme .form-control::placeholder,
+.light-theme .form-select,
+.light-theme .input-group .input-group-text,
+.light-theme .country-cards .col-12 .country-card {
+    background-color: hsl(0, 0%, 98%) !important;
+    color: hsl(200, 15%, 8%) !important;
 }
