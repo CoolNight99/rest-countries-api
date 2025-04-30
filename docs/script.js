@@ -1,37 +1,41 @@
 const HomeView = {
   template: `
     <div>
-      <div class="search-and-filter-div d-flex justify-content-between gx-5 my-5">
-        <div class="col-12 col-md-6 mb-3 mb-md-0">
-          <div class="input-group">
-            <span class="input-group-text">
-              <i class="fa-solid fa-magnifying-glass mx-2" :style="{ color: darkMode ? '#ffffff' : '#858585' }"></i>
-            </span>
-            <input type="text" class="form-control p-3" :class="{'placeholder-dark': darkMode, 'placeholder-light': !darkMode}" v-model="searchInput" placeholder="Search for a country...">
-          </div>
-        </div>
-        <div class="col-12 col-md-4 ms-md-auto">
-          <select class="form-select p-3" v-model="filterInput">
-            <option selected disabled value="">Filter by Region</option>
-            <option v-for="region in regions" :key="region" :value="region">
-              {{ region }}
-            </option>
-          </select>
-        </div>
-      </div>
-      <div class="row country-cards">
-        <div class="col-12 col-sm-6 col-md-3 mb-4 g-5" v-for="country in filteredCountries" :key="country.name.common">
-          <div class="card country-card h-100">
-            <img :src="country.flags.svg" class="card-img-top w-40" :alt="'Flag of ' + country.name.common">
-            <div class="card-body p-4">
-              <h5 class="card-title mb-4" @click="openDetailedView(country.name.common)">{{ country.name.common }}</h5>
-              <p class="card-text"><span>Population:</span> {{ country.population.toLocaleString() }}</p>
-              <p class="card-text"><span>Region:</span> {{ country.region }}</p>
-              <p class="card-text"><span>Capital:</span> {{ country.capital ? country.capital[0] : "N/A" }}</p>
+      <div class="container search-and-filter-div gx-5 my-5 mx-0">
+        <div class="row">
+          <div class="col-12 col-md-6 gx-5 ">
+            <div class="input-group">
+              <span class="input-group-text">
+                <i class="fa-solid fa-magnifying-glass mx-2" :style="{ color: darkMode ? '#ffffff' : '#858585' }"></i>
+              </span>
+              <input type="text" class="form-control p-3" :class="{'placeholder-dark': darkMode, 'placeholder-light': !darkMode}" v-model="searchInput" placeholder="Search for a country...">
             </div>
           </div>
+          <div class="col-12 col-md-3 ms-md-auto mt-3 mt-md-0">
+            <select class="form-select p-3 mt-5 mt-md-0" v-model="filterInput">
+              <option selected value="">{{ filterInput ? "All" : "Filter by Region" }}</option>
+              <option v-for="region in regions" :key="region" :value="region">
+                {{ region }}
+              </option>
+            </select>
+          </div>
         </div>
-      </div>    
+      </div>
+      <div class="container">
+        <div class="row country-cards">
+          <div class="col-12 col-sm-6 col-md-3 mb-4 g-5" v-for="country in filteredCountries" :key="country.name.common">
+            <div class="card country-card h-100">
+              <img :src="country.flags.svg" class="card-img-top w-40" :alt="'Flag of ' + country.name.common">
+              <div class="card-body p-4">
+                <h5 class="card-title mb-4" @click="openDetailedView(country.name.common)">{{ country.name.common }}</h5>
+                <p class="card-text"><span>Population:</span> {{ country.population.toLocaleString() }}</p>
+                <p class="card-text"><span>Region:</span> {{ country.region }}</p>
+                <p class="card-text"><span>Capital:</span> {{ country.capital ? country.capital[0] : "N/A" }}</p>
+              </div>
+            </div>
+          </div>
+        </div>    
+      </div>
     </div>
   `,
 
